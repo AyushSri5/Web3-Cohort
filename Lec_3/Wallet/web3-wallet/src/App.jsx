@@ -12,15 +12,16 @@ function App() {
   const privateKey = '0xab72008c0fd279d73d983d8d4936c1cacb42bbd7114649b4dbc661980abbbfa8';
   const settings = {
     apiKey: "W5c5MuiMAzNX0kEUZpDa4_6VlWxghBfQ",
-    network: Network.ETH_MAINNET, // Replace with your network.
+    network: Network.ETH_SEPOLIA, // Replace with your network.
   };
   const alchemy = new Alchemy(settings);
   const wallet = new Wallet(privateKey);
-
+  console.log(wallet);
+  
 
 async function sendTransaction(){
   const transaction = {
-    to: "0xa238b6008Bc2FBd9E386A5d4784511980cE504Cd",
+    to: "0xA95096018d2Bb2347677d3B6b549855091E8d55e",
     value: Utils.parseEther("0.001"),
     gasLimit: "21000",
     maxPriorityFeePerGas: Utils.parseUnits("5", "gwei"),
@@ -30,6 +31,8 @@ async function sendTransaction(){
     chainId: 1, // Corresponds to ETH_MAINNET
   };
 const rawTransaction = await wallet.signTransaction(transaction);
+console.log("Raw transaction: " + rawTransaction);
+
 const result=await alchemy.transact.sendTransaction(rawTransaction);
 console.log(result);
 
