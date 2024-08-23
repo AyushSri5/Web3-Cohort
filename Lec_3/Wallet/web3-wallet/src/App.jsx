@@ -28,7 +28,7 @@ async function sendTransaction(){
     maxFeePerGas: Utils.parseUnits("20", "gwei"),
     nonce: await alchemy.core.getTransactionCount(wallet.getAddress()),
     type: 2,
-    chainId: 1, // Corresponds to ETH_MAINNET
+    chainId: 11155111, // Corresponds to ETH_MAINNET
   };
 const rawTransaction = await wallet.signTransaction(transaction);
 console.log("Raw transaction: " + rawTransaction);
