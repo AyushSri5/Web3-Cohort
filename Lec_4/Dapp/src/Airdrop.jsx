@@ -42,8 +42,8 @@ export function RequestAirdrop(){
     
         
     }
-    return <div>
-         <input id="amount" type="text" placeholder="Amount" />
-         <button onClick={requestAirdrop}>Request Airdrop</button>
+    return <div className="airdrop">
+         <input className='input-box' id="amount" type="text" placeholder="Amount" />
+         <button  onClick={requestAirdrop}>Request Airdrop</button>
     </div>
 }

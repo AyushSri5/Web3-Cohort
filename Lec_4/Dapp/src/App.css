@@ -1,0 +1,8 @@
+.input-box {
+    margin: 10px;
+}
+.airdrop{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

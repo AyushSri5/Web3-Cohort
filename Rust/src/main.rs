@@ -42,8 +42,8 @@
 //     return s.chars().count();
 // }
 
-// // Structs
-// // ----------------------------------------------------------------
+// Structs
+// ----------------------------------------------------------------
 
 // struct User {
 //     first_name: String,
@@ -54,32 +54,74 @@
 
 // ------------------------------
 // Implementation of structs
-struct Rect {
-    width: i32,
-    height: i32,
-}
+// struct Rect {
+//     width: i32,
+//     height: i32,
+// }
 
-impl Rect {
-    fn area(&self) -> i32 {
-        self.width * self.height
-    }
+// impl Rect {
+//     fn area(&self) -> i32 {
+//         self.width * self.height
+//     }
 
-    fn perimeter(&self, num: i32) -> i32 {
-        2 * (self.width + self.height)
-    }
+//     fn perimeter(&self, num: i32) -> i32 {
+//         2 * (self.width + self.height)
+//     }
 
-    fn debug() -> i32 {
-        return 1;
-    }
+//     fn debug() -> i32 {
+//         return 1;
+//     }
+// }
+
+// fn main() {
+//     let rect1 = Rect {
+//         width: 10,
+//         height: 20,
+//     };
+
+//     println!("area is {}", rect1.area());
+//     println!("perimeter is {}", rect1.perimeter(1));
+//     println!("debug is {}", Rect::debug());
+// }
+
+// Enums
+
+
+enum Shape {
+    Rectangle(f64, f64), // width, height
+    Circle(f64),         // radius
 }
 
 fn main() {
-    let rect1 = Rect {
-        width: 10,
-        height: 20,
-    };
+    // let rect = Shape::Rectangle(1.0, 2.0);
+    // calculate_area(rect);
+    // let circle = Shape::Circle(1.0);
+    // let result = calculate_area(circle);
+    // println!("result is {}", result);
+    let index = first_a(String::from("Ayaush"));
 
-    println!("area is {}", rect1.area());
-    println!("perimeter is {}", rect1.perimeter(1));
-    println!("debug is {}", Rect::debug());
+    match index {
+        Some(value) => println!("index is {}", value),
+        None => println!("a not found"),
+    }
+}
+
+fn calculate_area(shape: Shape) -> f64 {
+    match shape {
+        Shape::Rectangle(a, b) => a * b,
+        Shape::Circle(r) => 3.14 * r * r,
+    }
+}
+
+// Options 
+
+fn first_a(s: String) -> Option<i32> {
+    let mut i = 0;
+
+    for(index,char) in s.chars().enumerate() {
+        if char == 'a'{
+            return Some(i as i32);
+        }
+    }
+    return None;
 }
