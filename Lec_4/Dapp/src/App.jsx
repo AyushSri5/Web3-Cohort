@@ -12,6 +12,7 @@ import './App.css'
 import { RequestAirdrop } from './Airdrop';
 import ShowSolBalance from './ShowSolBalance';
 import Tokens from './Tokens';
+import { SendTokens } from './SendTokens';
 
 function App() {
 
@@ -30,7 +31,7 @@ function App() {
           <ShowSolBalance />
           <Tokens />
           {/* <SignMessage /> */}
-          {/* <SendTokens /> */}
+          <SendTokens />
         </WalletModalProvider>
     </WalletProvider>
 </ConnectionProvider>

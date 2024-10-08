@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { clusterApiUrl, Connection, Keypair, PublicKey } from '@solana/web3.js';
 import { AccountLayout, TOKEN_PROGRAM_ID,MintLayout, createMint } from '@solana/spl-token';
-import { minttoken } from './Mint';
+import MintToken from './Mint';
 
 const Tokens = () => {
   const [walletAddress, setWalletAddress] = useState('');
@@ -50,22 +50,10 @@ const Tokens = () => {
     }
   };
 
-  const payer = Keypair.generate();
-const mintAuthority = Keypair.generate();
-const freezeAuthority = Keypair.generate();
 
 
-  const mint = async () => {
-    const result = await createMint(
-      connection,
-  payer,
-  mintAuthority.publicKey,
-  freezeAuthority.publicKey,
-  9 
-    )
-    console.log(result.toBase58());
-    
-  }
+
+ 
 
   return (
     <div>
@@ -107,7 +95,7 @@ const freezeAuthority = Keypair.generate();
       {tokenAccounts.length === 0 && !loading && !error && (
         <p>No tokens found or please enter a valid wallet address.</p>
       )}
-      <button onClick={mint}>Mint New Token</button>
+      <MintToken />
     </div>
   );
 };
