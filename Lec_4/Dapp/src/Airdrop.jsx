@@ -5,7 +5,6 @@ import * as solanaWeb3 from '@solana/web3.js'
 
 export function RequestAirdrop(){
     const wallet = useWallet();
-    const { connection } = useConnection();
 
     
 
