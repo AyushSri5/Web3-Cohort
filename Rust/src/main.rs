@@ -118,6 +118,8 @@
 // fn first_a(s: String) -> Option<i32> {
 //     let mut i = 0;
 
+use std::char;
+
 //     for(index,char) in s.chars().enumerate() {
 //         if char == 'a'{
 //             return Some(i as i32);
@@ -126,32 +128,99 @@
 //     return None;
 // }
 // ---------------------------------------NEW --------------------------------
-fn main() {
-    println!("Hello world");
-    let index : i32 = 100;
-    let mut num: u32 = 124;
-    for i in 0..100 {
-        num += 127;
-    }
-    println!("Number: {}", num);
-    let is_male = false;
-    let is_above_18 = true;
+// fn main() {
+//     println!("Hello world");
+//     let index : i32 = 100;
+//     let mut num: u32 = 124;
+//     for i in 0..100 {
+//         num += 127;
+//     }
+//     println!("Number: {}", num);
+//     let is_male = false;
+//     let is_above_18 = true;
     
-    if is_male {
-        println!("You are a male");
+//     if is_male {
+//         println!("You are a male");
 
-    } else {
-        println!("You are not a male");
-    }
+//     } else {
+//         println!("You are not a male");
+//     }
 
-    if is_male && is_above_18 {
-        print!("You are a legal male");
-    }
+//     if is_male && is_above_18 {
+//         print!("You are a legal male");
+//     }
 
-    let x: &str = "ayush";
-    println!("X: {}", x);
-    let name: String = String::from("ayush");
-    let ch: Option<char> = name.chars().nth(3);
+//     let x: &str = "ayush";
+//     println!("X: {}", x);
+//     let name: String = String::from("ayush");
+//     let ch: Option<char> = get_first(name);
 
-    println!("{}",ch.unwrap());
+//     println!("{}",ch.unwrap());
+// }
+// fn get_first(name: String) -> Option<char> {
+//     let x : String = String::from("ayush");
+//     x.push_str("ch");
+//     return name.chars().nth(0);
+// }
+fn main() {
+    // stack_fn();   // Call the function that uses stack memory
+    // heap_fn();    // Call the function that uses heap memory
+    // update_string();  // Call the function that changes size of variable at runtime
+    let s1: String = String::from("Hello World");
+    println!("{}",s1);
+
+    let s2: String =s1;
+    let mut my_string = String::from("hello");
+    my_string = takes_ownership(my_string);
+    // println!("{}", my_string); 
+    let s3: String = String::from("Ayush Sri");
+    let s4 = &s3;
+    // println!("{}", s3);
+    // println!("{}", s4);
+    let mut s1 = String::from("Hello");
+    let s2 = &mut s1;
+    update_word(s2);
+    let s3 = &s1;
+    
+    println!("{}", s1);
+    println!("{}", s2);
+
+}
+
+fn stack_fn() {
+    // Declare a few integers on the stack
+    let a = 10;
+    let b = 20;
+    let c = a + b;
+    println!("Stack function: The sum of {} and {} is {}", a, b, c);
+}
+
+fn heap_fn() {
+    // Create a string, which is allocated on the heap
+    let s1 = String::from("Hello");
+    let s2 = String::from("World");
+    let combined = format!("{} {}", s1, s2);
+    println!("Heap function: Combined string is '{}'", combined);
+}
+
+fn update_string() {
+    // Start with a base string on the heap
+    let mut s = String::from("Initial string");
+    println!("Before update: {}", s);
+    println!("Capacity: {}, Length: {}, Pointer: {:p}",s.capacity(),s.len(),s.as_ptr());
+
+    // Append some text to the string
+    s.push_str(" and some additional text");
+    println!("After update: {}", s);
+    println!("Capacity: {}, Length: {}, Pointer: {:p}",s.capacity(),s.len(),s.as_ptr());
+
+}
+
+fn takes_ownership(some_string: String) -> String {
+    println!("{}", some_string); // `some_string` now owns the data.
+    return some_string;
+}
+
+fn update_word(word: &mut String) {
+    word.push_str(" World");
 }
