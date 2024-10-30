@@ -171,7 +171,7 @@ fn main() {
 
     let s2: String =s1;
     let mut my_string = String::from("hello");
-    my_string = takes_ownership(my_string);
+    takes_ownership(my_string);
     // println!("{}", my_string); 
     let s3: String = String::from("Ayush Sri");
     let s4 = &s3;
@@ -182,8 +182,29 @@ fn main() {
     update_word(s2);
     let s3 = &s1;
     
-    println!("{}", s1);
-    println!("{}", s2);
+    // println!("{}", s1);
+    // println!("{}", s2);
+
+    let user = User{
+        active: false,
+        name: String::from("Ayush"),
+        email: String::from("ayushs@gmail.com"),
+        age:12
+    };
+    // println!("User name: {}", user.name);
+    let rect = Rect {
+        width: 30,
+        height: 50,
+    };
+    // println!("The area of the rectangle is {}", rect.area());
+    move_around(Direction::North);
+    let circle = Shape::Circle(5.0);
+    let square = Shape::Square(4.0);
+    let rectangle = Shape::Rectangle(3.0, 6.0);
+
+    println!("Area of circle: {}", calculate_area(circle));
+    println!("Area of square: {}", calculate_area(square));
+    println!("Area of rectangle: {}", calculate_area(rectangle));
 
 }
 
@@ -223,4 +244,47 @@ fn takes_ownership(some_string: String) -> String {
 
 fn update_word(word: &mut String) {
     word.push_str(" World");
+}
+
+struct User {
+    active: bool,
+    name: String,
+    email: String,
+    age: i32
+}
+struct Rect {
+    width: u32,
+    height: u32,
+ }
+ 
+ impl Rect {
+     fn area(&self) -> u32 {
+          self.width * self.height
+     }
+ }
+ enum Direction {
+    North,
+    South,
+    West,
+    East
+ }
+
+ fn move_around(direction: Direction) {
+
+ }
+ enum Shape {
+    Circle(f64),  // Variant with associated data (radius)
+    Square(f64),  // Variant with associated data (side length)
+    Rectangle(f64, f64),  // Variant with associated data (width, height)
+}
+
+// Function to calculate area based on the shape
+fn calculate_area(shape: Shape) -> f64 {
+    // calculates the area of the shape 
+    let ans=match shape {
+        Shape::Circle(radius) => std::f64::consts::PI*radius*radius,
+        Shape::Rectangle(len,bred ) => len*bred,
+        Shape::Square(side) => side*side
+    };
+    return ans;
 }
