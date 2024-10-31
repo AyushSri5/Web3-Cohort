@@ -1,3 +1,5 @@
+use rand::{Rng,thread_rng};
+mod own;
 // // fn main() {
 // //     // println!("{}",is_even(20));
 // //     // println!("{}",fib(5));
@@ -118,7 +120,7 @@
 // fn first_a(s: String) -> Option<i32> {
 //     let mut i = 0;
 
-use std::char;
+use std::{char, collections::HashMap, fs, vec};
 
 //     for(index,char) in s.chars().enumerate() {
 //         if char == 'a'{
@@ -196,15 +198,50 @@ fn main() {
         width: 30,
         height: 50,
     };
-    // println!("The area of the rectangle is {}", rect.area());
+    println!("The area of the rectangle is {}", rect.area());
     move_around(Direction::North);
     let circle = Shape::Circle(5.0);
     let square = Shape::Square(4.0);
     let rectangle = Shape::Rectangle(3.0, 6.0);
 
-    println!("Area of circle: {}", calculate_area(circle));
-    println!("Area of square: {}", calculate_area(square));
-    println!("Area of rectangle: {}", calculate_area(rectangle));
+    // println!("Area of circle: {}", calculate_area(circle));
+    // println!("Area of square: {}", calculate_area(square));
+    // println!("Area of rectangle: {}", calculate_area(rectangle));
+    let integer_point = Point { x:9 , y:"a",z:"b"};
+    // println!("Point {} {} {}",integer_point.x,integer_point.y,integer_point.z)
+    let res= fs::read_to_string("example.txt");
+
+    match res {
+        Ok(contents) => println!("Result {}",contents),
+        Err(err) => println!("Error: {}", err)
+    };
+
+    for character in s3.chars() {
+        // println!("Character {}", character);
+    }
+    let mut rng = thread_rng();
+    let n: u32 = rng.gen();
+    println!("Random number: {}", n);
+
+    // Vectors
+    let mut vecto = Vec::new();
+    vecto.push(1);
+    vecto.push(2);
+    vecto.push(3);
+    println!("{:?}",vecto.get(0));
+    let mut map = HashMap::new();
+    map.insert(String::from("ayush"), 23);
+    map.insert(String::from("abc"),22);
+
+    let user = map.get("abc");
+    let mut nums = vec![1,2,3,4,5];
+    let mut itr = nums.iter();
+    let updated:Vec<i32> = itr.clone().map(|x| x+1).collect();
+    println!("Updated: {:?}",updated);
+    let first = itr.next();
+    let second = itr.next();
+
+    // Memory Management
 
 }
 
@@ -278,6 +315,12 @@ struct Rect {
     Rectangle(f64, f64),  // Variant with associated data (width, height)
 }
 
+struct Point<A,B> {
+    x: A,
+    y: B,
+    z: B
+}
+
 // Function to calculate area based on the shape
 fn calculate_area(shape: Shape) -> f64 {
     // calculates the area of the shape 
@@ -287,4 +330,20 @@ fn calculate_area(shape: Shape) -> f64 {
         Shape::Square(side) => side*side
     };
     return ans;
+}
+
+enum Result<A,B> {
+
+    Ok(A),
+    Err(B)
+}
+
+fn even_filter(vec: Vec<i32>) -> Vec<i32>{
+    let mut result: Vec<i32> = Vec::new();
+    for i in vec{
+        if i%2 == 0{
+        result.push(i);
+        }
+    }
+    return result;
 }
